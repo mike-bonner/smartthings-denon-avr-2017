@@ -171,12 +171,30 @@ metadata {
         }
 
         // Adding modes and QS
-        standardTile("sound", "device.sound", width: 4, height: 2, decoration: "flat"){
-        	state "sMusic", label: '${currentValue}', action:"sMusic", icon:"st.Entertainment.entertainment3", backgroundColor: "#FFFFFF", nextState:"sMovie"
-			state "sMovie", label: '${currentValue}', action:"sMovie", icon:"st.Entertainment.entertainment9", backgroundColor: "#FFFFFF", nextState:"sGame"
-			state "sGame", label: '${currentValue}', action:"sGame", icon:"st.Electronics.electronics6", backgroundColor: "#FFFFFF", nextState:"sPure"
+        /*standardTile("sound", "device.sound", width: 1, height: 1, decoration: "flat"){
+        	state "sMusic", label: '${currentValue}', action:"sMusic", icon:"st.Entertainment.entertainment2", backgroundColor: "#FFFFFF", nextState:"sMovie"
+			state "sMovie", label: '${currentValue}', action:"sMovie", icon:"st.Entertainment.entertainment6", backgroundColor: "#FFFFFF", nextState:"sGame"
+			state "sGame", label: '${currentValue}', action:"sGame", icon:"st.Electronics.electronics5", backgroundColor: "#FFFFFF", nextState:"sPure"
 			state "sPure", label: '${currentValue}', action:"sPure", icon:"st.Entertainment.entertainment15", backgroundColor: "#FFFFFF", nextState:"sMusic"
-        }
+        }*/
+
+        standardTile("sMusic", "device.sMusic", width: 1, height: 1, decoration: "flat"){
+        	state "OFF", label: 'Music', action: "sMusic", icon:"st.Entertainment.entertainment2",  backgroundColor: "#53a7c0", nextState:"ON"   // icon:"st.Electronics.electronics5",
+            state "ON", label: 'Music', action: "sMusic", icon:"st.Entertainment.entertainment2", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
+		} 
+        standardTile("sMovie", "device.sMovie", width: 1, height: 1, decoration: "flat"){
+        	state "OFF", label: 'Movie', action: "sMovie", icon:"st.Entertainment.entertainment6", backgroundColor: "#53a7c0", nextState:"ON"   // icon:"st.Electronics.electronics5",
+            state "ON", label: 'Movie', action: "sMovie", icon:"st.Entertainment.entertainment6", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
+		} 
+        standardTile("sGame", "device.sGame", width: 1, height: 1, decoration: "flat"){
+        	state "OFF", label: 'Game', action: "sGame", icon:"st.Electronics.electronics5", backgroundColor: "#53a7c0",nextState:"ON"   // icon:"st.Electronics.electronics5",
+            state "ON", label: 'Game', action: "sGame", icon:"st.Electronics.electronics5", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
+		} 
+        standardTile("sPure", "device.sPure", width: 1, height: 1, decoration: "flat"){
+        	state "OFF", label: 'Pure', action: "sPure",icon:"st.Entertainment.entertainment15", backgroundColor: "#53a7c0", nextState:"ON"   // icon:"st.Electronics.electronics5",
+            state "ON", label: 'Pure', action: "sPure",icon:"st.Entertainment.entertainment15", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
+		} 
+
         standardTile("q1", "device.q1", width: 1, height: 1, decoration: "flat"){
         	state "OFF", label: 'Quick 1', action: "q1",  backgroundColor: "#53a7c0",nextState:"ON"   // icon:"st.Electronics.electronics5",
             state "ON", label: 'Quick 1', action: "q1", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
@@ -195,7 +213,8 @@ metadata {
 		}
 
         main "switch"
-        details(["mediaMulti", "switch", "phono", "cd", "dvd", "bd", "tv", "satcbl", "mplay", "game", "tuner", "aux1", "aux2", "net", "bt","sound","q1", "q2", "q3", "q4", "refresh"])
+        details(["mediaMulti", "switch", "phono", "cd", "dvd", "bd", "tv", "satcbl", "mplay", "game", "tuner", "aux1", "aux2", "net", "bt", "q1", "q2", "q3", "q4", "sMusic","sMovie", "sGame", "sPure", "refresh"])
+        //details(["mediaMulti", "switch", "phono", "cd", "dvd", "bd", "tv", "satcbl", "mplay", "game", "tuner", "aux1", "aux2", "net", "bt","refresh"])
     }
 }
 
@@ -294,6 +313,10 @@ def parse(String description) {
                 }
             }
         }
+        
+        /*def inputSurr = statusrsp.selectSurround.value.text()
+    		sendEvent(name: "sound", value: inputSurr)
+	        log.debug "Current Surround is: ${inputSurr}"*/
 
         if (!parsed) {
             log.debug "Unparsed body ${bodyString}"
@@ -788,16 +811,16 @@ def bt() {
 
  //SOUND MODES
     def sMusic() {
-        request("SMMUSIC")
+        request("MSMUSIC")
     }
     def sMovie() { 
-        request("SMMOVIE")
+        request("MSMOVIE")
     }
     def sGame() {
-        request("SMGAME")
+        request("MSGAME")
     }
     def sPure() {
-        request("SMPURE%20DIRECT")
+        request("MSDIRECT")
     }
     //QUICK MODES
     def q1() {

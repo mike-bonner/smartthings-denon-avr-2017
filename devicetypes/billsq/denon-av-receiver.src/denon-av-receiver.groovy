@@ -171,31 +171,31 @@ metadata {
         }
 
         // Adding modes and QS
-        standardTile("input10", "device.sound", width: 4, height: 2, decoration: "flat"){
+        standardTile("sound", "device.sound", width: 4, height: 2, decoration: "flat"){
         	state "sMusic", label: '${currentValue}', action:"sMusic", icon:"st.Entertainment.entertainment3", backgroundColor: "#FFFFFF", nextState:"sMovie"
 			state "sMovie", label: '${currentValue}', action:"sMovie", icon:"st.Entertainment.entertainment9", backgroundColor: "#FFFFFF", nextState:"sGame"
 			state "sGame", label: '${currentValue}', action:"sGame", icon:"st.Electronics.electronics6", backgroundColor: "#FFFFFF", nextState:"sPure"
 			state "sPure", label: '${currentValue}', action:"sPure", icon:"st.Entertainment.entertainment15", backgroundColor: "#FFFFFF", nextState:"sMusic"
         }
-        standardTile("input11", "device.q1", width: 1, height: 1, decoration: "flat"){
+        standardTile("q1", "device.q1", width: 1, height: 1, decoration: "flat"){
         	state "OFF", label: 'Quick 1', action: "q1",  backgroundColor: "#53a7c0",nextState:"ON"   // icon:"st.Electronics.electronics5",
             state "ON", label: 'Quick 1', action: "q1", backgroundColor: "#79b821", nextState:"OFF"  //, icon:"st.Electronics.electronics5" 
 		}         
-        standardTile("input12", "device.q2", width: 1, height: 1, decoration: "flat"){
+        standardTile("q2", "device.q2", width: 1, height: 1, decoration: "flat"){
         	state "OFF", label: 'Quick 2', action: "q2", backgroundColor:"#53a7c0" ,nextState:"ON"   //, icon:"st.Electronics.electronics5"
             state "ON", label: 'Quick 2', action: "q2", backgroundColor: "#79b821" , nextState:"OFF"   
 		}         
-        standardTile("input13", "device.q3", width: 1, height: 1, decoration: "flat"){
+        standardTile("q3", "device.q3", width: 1, height: 1, decoration: "flat"){
         	state "OFF", label: 'Quick 3', action: "q3", backgroundColor: "#53a7c0",nextState:"ON"   
             state "ON", label: 'Quick 3', action: "q3", backgroundColor: "#79b821", nextState:"OFF"   
 		}         
-        standardTile("input14", "device.q4", width: 1, height: 1, decoration: "flat"){
+        standardTile("q4", "device.q4", width: 1, height: 1, decoration: "flat"){
         	state "OFF", label: 'Quick 4', action: "q4", backgroundColor: "#53a7c0",nextState:"ON"   
             state "ON", label: 'Quick 4', action: "q4", backgroundColor: "#79b821", nextState:"OFF"   
 		}
 
         main "switch"
-        details(["mediaMulti", "switch", "phono", "cd", "dvd", "bd", "tv", "satcbl", "mplay", "game", "tuner", "aux1", "aux2", "net", "bt", "refresh"])
+        details(["mediaMulti", "switch", "phono", "cd", "dvd", "bd", "tv", "satcbl", "mplay", "game", "tuner", "aux1", "aux2", "net", "bt","sound","q1", "q2", "q3", "q4", "refresh"])
     }
 }
 
